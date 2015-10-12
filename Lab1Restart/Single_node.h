@@ -4,11 +4,11 @@
 *  - Select the current calendar term and enter the year
 *  - List students with whom you had discussions and who helped you
 *
-* uWaterloo User ID:  uwuserid @uwaterloo.ca
+* uWaterloo User ID:  l43cheng @uwaterloo.ca
 * Submitted for ECE 250
 * Department of Electrical and Computer Engineering
 * University of Waterloo
-* Calender Term of Submission:  (Winter|Spring|Fall) 201N
+* Calender Term of Submission:  (Fall) 201N
 *
 * By submitting this file, I affirm that
 * I am the author of all modifications to
@@ -30,7 +30,7 @@
 #define nullptr 0
 #endif
 
-#include "ece250.h"
+//#include "ece250.h"
 
 template <typename Type>
 class Single_list;
@@ -67,5 +67,30 @@ public:
 	//    use   ptr->next_node   to modify it
 	//    use   ptr->next()      to access it
 };
+
+
+template <typename Type>
+Single_node<Type>::Single_node(Type const &e, Single_node<Type> *n) :
+element(e),
+next_node(n) {
+	// empty constructor
+}
+
+//returns the element stored in the node
+template <typename Type>
+Type Single_node<Type>::retrieve() const {
+
+	return element;
+}
+
+//returns the next node this node points to
+template <typename Type>
+Single_node<Type>* Single_node<Type>::next() const {
+	return next_node;
+}
+
+// Is an error showing up in ece250.h or elsewhere?
+// Did you forget a closing '}' ?
+
 
 #endif
