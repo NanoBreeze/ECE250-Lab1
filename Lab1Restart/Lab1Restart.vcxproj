@@ -70,17 +70,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Cyclic_list.h" />
-    <ClInclude Include="ECE250.h" />
+    <ClInclude Include="Cyclic_list_tester.h" />
+    <ClInclude Include="ece250.h" />
     <ClInclude Include="Exception.h" />
-    <ClInclude Include="Hi.h" />
     <ClInclude Include="Single_node.h" />
+    <ClInclude Include="SIngle_node_tester.h" />
+    <ClInclude Include="Tester.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Cyclic_list.cpp" />
-    <ClCompile Include="ECE250.cpp" />
-    <ClCompile Include="Exception.cpp" />
-    <ClCompile Include="Hi.cpp" />
-    <ClCompile Include="Single_node.cpp" />
+    <ClCompile Include="Cyclic_list_double_driver.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

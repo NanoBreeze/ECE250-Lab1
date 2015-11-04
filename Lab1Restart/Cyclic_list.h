@@ -27,13 +27,13 @@
 #ifndef CYCLIC_LIST_H
 #define CYCLIC_LIST_H
 
-//#ifndef nullptr
-//#define nullptr 0
-//#endif
+#ifndef nullptr
+#define nullptr 0
+#endif
 
-//#include "ece250.h"
+#include "ece250.h"
 #include "Single_node.h"
-//#include "Exception.h"
+#include "Exception.h"
 
 
 template <typename Type>
@@ -331,6 +331,21 @@ int Cyclic_list<Type>::erase(Type const &obj) {
 	return 0;
 }
 
+
+template <typename T> std::ostream &operator<< (std::ostream &out, Cyclic_list<T> const &list)
+{
+	out << "head";
+	int counter = 0;
+
+	for (Single_node<T> *ptr = list.head(); counter < list.size(); ptr = ptr->next())
+	{
+		out << "->" << ptr->retrieve();
+
+		counter++;
+	}
+
+	return out;
+}
 
 
 #endif
