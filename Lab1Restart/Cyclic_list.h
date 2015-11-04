@@ -146,35 +146,19 @@ Cyclic_list<Type>::~Cyclic_list() {
 //determines the size of the cyclic list. Start at head, stop counting when at tail. Thus, +1 to count
 template <typename Type>
 int Cyclic_list<Type>::size() const {
-	
-	int count = 0;
-	Single_node<Type>* current_node = list_head;
-	
-	while (current_node != list_tail)
-	{
-			count++;
-			current_node = current_node->next();
-	}
-	return count + 1;
+	return list_size;
 }
 
 //determines if the cyclic list is empty or not
 template <typename Type>
 bool Cyclic_list<Type>::empty() const {
-
-	if (list_head == nullptr)
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
+	 if (list_size == 0)  return true; else return false;
 }
 
 //retrieves the element in the head node
 template <typename Type>
 Type Cyclic_list<Type>::front() const {
+
 	if (list_head == nullptr)
 	{
 		throw new std::exception("front() is called and the list is null. Make sure to replace this comment with the custom exception header's underflow exception");
@@ -218,9 +202,7 @@ int Cyclic_list<Type>::count(Type const &obj) const {
 	int count = 0;
 	Single_node<Type>* current_node = list_head;
 
-	int sizeOfList = size();
-
-	for (int i = 0; i < sizeOfList; i++)
+	for (int i = 0; i < list_size; i++)
 	{
 		if (current_node->retrieve() == obj)
 		{
@@ -250,7 +232,7 @@ Cyclic_list<Type> &Cyclic_list<Type>::operator=(Cyclic_list<Type> const &rhs) {
 //creates a new node at the front. The next pointer of the last node now points to this node
 template <typename Type>
 void Cyclic_list<Type>::push_front(Type const &obj) {
-	if (empty())
+	if (list_size == 0)
 	{
 		list_head = new Single_node<Type> ;
 		list_head->element = obj;
@@ -265,12 +247,13 @@ void Cyclic_list<Type>::push_front(Type const &obj) {
 		list_head = temp;
 		list_tail->next_node = list_head;
 	}
+	list_size++;
 }
 
 //creates a new node at the end. Its next pointer points to the head node.
 template <typename Type>
 void Cyclic_list<Type>::push_back(Type const &obj) {
-	if (empty())
+	if (list_size == 0)
 	{
 		list_head = new Single_node<Type>;
 		list_head->element = obj;
@@ -293,6 +276,7 @@ Type Cyclic_list<Type>::pop_front() {
 	Type element = temp->retrieve();
 	list_head = list_head->next();
 	list_tail->next_node = list_head;
+	list_size--;
 	delete temp;
 	return element;
 }
@@ -309,16 +293,18 @@ int Cyclic_list<Type>::erase(Type const &obj) {
 	if (current->retrieve() == obj)
 	{
 		pop_front();
+		list_size--;
 		return 1;
 	}
 
-	int s = size();
+	
 
-	for (int i = 0; i < s -1; i++)
+	for (int i = 0; i < list_size -1; i++)
 	{
 		if (ahead->retrieve() == obj)
 		{
 			current->next_node = ahead->next();
+			list_size--;
 			delete ahead;
 			return 1;
 		}

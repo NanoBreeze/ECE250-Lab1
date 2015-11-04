@@ -79,7 +79,6 @@ next_node(n) {
 //returns the element stored in the node
 template <typename Type>
 Type Single_node<Type>::retrieve() const {
-
 	return element;
 }
 
